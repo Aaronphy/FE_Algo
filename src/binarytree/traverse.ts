@@ -14,11 +14,14 @@ interface binaryTree {
  */
 let preOrder =  (nodes:binaryTree) =>{
     const res:number[] = [];
-    if(nodes.node){
-        res.push(nodes.node);
-        nodes.left&&preOrder(nodes.left);
-        nodes.right&&preOrder(nodes.right);
+    const _preOrder = (n:binaryTree)=>{
+        if(n.node){
+            res.push(nodes.node);
+            nodes.left&&_preOrder(nodes.left);
+            nodes.right&&_preOrder(nodes.right);
+        }
     }
+   _preOrder(nodes);
     return res;
 }
 
@@ -44,11 +47,14 @@ let preOrderPro = (nodes:binaryTree) =>{
  */
  let inOrder =  (nodes:binaryTree) =>{
     const res:number[] = [];
-    if(nodes.node){
-        nodes.left&&preOrder(nodes.left);
-        res.push(nodes.node);
-        nodes.right&&preOrder(nodes.right);
+    const _inOrder = (n:binaryTree)=>{
+        if(n.node){
+            nodes.left&&_inOrder(nodes.left);
+            res.push(nodes.node);
+            nodes.right&&_inOrder(nodes.right);
+        }
     }
+    _inOrder(nodes);
     return res;
 }
 
@@ -60,16 +66,16 @@ let inOrderPro = (nodes:binaryTree)=>{
 
     const res:number[]=[];
     const stack:binaryTree[] = [];
-    let tempnode:binaryTree = nodes;
+    let tempNode:binaryTree = nodes;
 
-    while(stack.length||tempnode!==null){
-        if(tempnode){
-            stack.push(tempnode);
-            tempnode = tempnode.left as binaryTree;
+    while(stack.length||tempNode!==null){
+        if(tempNode){
+            stack.push(tempNode);
+            tempNode = tempNode.left as binaryTree;
         }else{
             let item:binaryTree = stack.pop() as binaryTree;
             res.push(item.node);
-            tempnode = item.right as binaryTree
+            tempNode = item.right as binaryTree
         }
     }
 }
@@ -80,11 +86,14 @@ let inOrderPro = (nodes:binaryTree)=>{
  */
  let postOrder =  (nodes:binaryTree) =>{
     const res:number[] = [];
-    if(nodes.node){
-        nodes.left&&preOrder(nodes.left);
-        nodes.right&&preOrder(nodes.right);
-        res.push(nodes.node);
+    const _postOrder = (n:binaryTree)=>{
+        if(n.node){
+            res.push(nodes.node);
+            nodes.left&&_postOrder(nodes.left);
+            nodes.right&&_postOrder(nodes.right);
+        }
     }
+    _postOrder(nodes);
     return res;
 }
 
@@ -104,11 +113,25 @@ let inOrderPro = (nodes:binaryTree)=>{
 
 
 /**
- * 层序遍历， BFS ，递归
+ * 层序遍历， BFS ，非递归, 从下至上
  */
+let leverOrder = (nodes:binaryTree)=>{
 
-
+}
 
 /**
- * 层序遍历， BFS ，非递归
+ * 层序遍历， BFS ，非递归, 从上至下
  */
+
+let levelOrderPro = (nodes:binaryTree)=>{
+    const res:number[]=[];
+    const queue:binaryTree[] = [];
+    queue.push(nodes);
+    while(queue.length){
+        let item = queue.shift() as binaryTree;
+        res.push(item.node);
+        item.left&& queue.push(item.left);
+        item.right&& queue.push(item.right);
+    }
+    return res;
+}

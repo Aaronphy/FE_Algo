@@ -5,7 +5,6 @@ coverage/
 .idea/
 run/
 .DS_Store
-.vscode
 *.swp
 *.lock
 !.autod.conf.js
