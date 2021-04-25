@@ -1,4 +1,4 @@
-const { lc102,lc103 } = require('./src/binarytree/lc.js');
+const { lc102,lc103,lc236 } = require('./src/binarytree/lc.js');
 
 var nodes = {
     node: 6,
@@ -20,7 +20,7 @@ var nodes = {
 }
 
 
-console.log(lc103(nodes));
+console.log(lc236(nodes,3,4));
 
 
 
